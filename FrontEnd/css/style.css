@@ -17,3 +17,10 @@ header {
     text-decoration: none;
 }
 
+#form ul {
+    list-style-type: none;    
+}
+
+#form ul>li {
+    margin: 10px;
+}
