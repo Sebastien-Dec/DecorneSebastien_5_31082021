@@ -1,0 +1,19 @@
+{
+  "name": "decornesebastien_5_31082021",
+  "version": "1.0.0",
+  "description": "DecorneSebastien_5_31082021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sebastien-Dec/DecorneSebastien_5_31082021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sebastien-Dec/DecorneSebastien_5_31082021/issues"
+  },
+  "homepage": "https://github.com/Sebastien-Dec/DecorneSebastien_5_31082021#readme"
+}
