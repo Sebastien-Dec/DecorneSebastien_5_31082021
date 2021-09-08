@@ -6,3 +6,6 @@ let idTeddy = "";
 let htmlImages = [];
 let imageHtml = "";
 let teedy = "";
+let optionColor = "";
+let color = "";
+let teddyHtml = "";

@@ -1,4 +1,4 @@
-// Test to verify that the bone list is called
+//Test to verify that the bone list is called
 list = listOfProducts();
 console.log("List", list);
 
@@ -13,7 +13,7 @@ fetch(baseUrl + "/teddies")
         console.log(teddies);
         for (teddy of teddies) {
             imageHtml = `
-                        <a href='product.html?id=${teddy._id}'>
+                        <a href='./view/products.html?id=${teddy._id}'>
                             <img src='${teddy.imageUrl}' alt='${teddy.name}' title='${teddy.price}' />
                             <div class='product-description'>
                                 ${teddy.description}
