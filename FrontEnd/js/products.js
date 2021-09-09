@@ -1,7 +1,3 @@
-//Test to verify that the bone list is called
-idTeddy = products();
-console.log("idTeddy", idTeddy);
-
 console.log(document.location.href);
 const params = new URLSearchParams(window.location.search);
 teddyId = params.get("id");

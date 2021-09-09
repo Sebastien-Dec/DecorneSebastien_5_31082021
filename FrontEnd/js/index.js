@@ -1,7 +1,3 @@
-//Test to verify that the bone list is called
-list = listOfProducts();
-console.log("List", list);
-
 fetch(baseUrl + "/teddies") 
     .then(function(res) {
         console.log("Response", res);

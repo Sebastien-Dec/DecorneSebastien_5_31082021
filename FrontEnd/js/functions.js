@@ -6,13 +6,21 @@ async function listOfProducts() {
     
 }
 
-async function products() {
+list = listOfProducts();
+console.log("List", list);
+
+async function teddy() {
     const response = await fetch(baseUrl + "/teddies/" + teddyId);
-    const id = await response.json();
-    console.log(id);
-    return id;
+    const tabOfTeddy = await response.json();
+    for (let idOfTeddy of tabOfTeddy) {
+        tabOfTeddy.find(Array => "_id");
+        console.log("idOfTeddy", idOfTeddy);
+        let teddy = idOfTeddy.name;
+        let newDiv = `<p>Peluche : ${teddy}</p>`;
+        document.querySelector("#exemple").innerHTML = newDiv;
+        console.log("teddy", teddy);     
+    }
 }
 
-
-
+teddy();
 
