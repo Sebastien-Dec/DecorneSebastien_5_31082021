@@ -10,17 +10,32 @@ list = listOfProducts();
 console.log("List", list);
 
 async function teddy() {
-    const response = await fetch(baseUrl + "/teddies/" + teddyId);
+    const response = await fetch(baseUrl + "/teddies");
     const tabOfTeddy = await response.json();
+    console.log("tabOfTeddy", tabOfTeddy);
+    
     for (let idOfTeddy of tabOfTeddy) {
-        tabOfTeddy.find(Array => "_id");
-        console.log("idOfTeddy", idOfTeddy);
-        let teddy = idOfTeddy.name;
-        let newDiv = `<p>Peluche : ${teddy}</p>`;
-        document.querySelector("#exemple").innerHTML = newDiv;
-        console.log("teddy", teddy);     
-    }
+    console.log("idOfTeddy", idOfTeddy);
+        
+            let newDiv = `<p>Peluche : ${idOfTeddy.name}</p>
+                        <img alt="${idOfTeddy.name}" src="${idOfTeddy.imageUrl}" title="${idOfTeddy.price}"/>"`;
+                document.querySelector("#exemple").innerHTML = newDiv;
+                console.log("teddy", idOfTeddy.name);    
+        }
+    
+    
 }
 
 teddy();
 
+// Exercice ecrire une fonction avec while ou or pour une factorielle
+function factoriel(n) {
+    let x = n;
+    while (x>1) {
+        n *= x-1;
+        x--;
+   }
+   return n;
+}
+factoriel(5);
+console.log(" La Factorielle de 5 est ", factoriel(5));
