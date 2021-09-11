@@ -1,30 +1,48 @@
-fetch(baseUrl + "/teddies") 
-    .then(function(res) {
-        console.log("Response", res);
-        if (res.ok) {
-            return res.json();
-        }
-    })
-    .then(function(teddies) {
-        console.log(teddies);
-        for (teddy of teddies) {
-            imageHtml = `
-                        <a href='./view/products.html?id=${teddy._id}'>
-                            <img src='${teddy.imageUrl}' alt='${teddy.name}' title='${teddy.price}' />
-                            <div class='product-description'>
-                                ${teddy.description}
-                            </div>
-                            <span class='product-price'>
-                                ${teddy.price}
-                            </span>
-                        </a>
-                        `;
-            htmlImages.push(imageHtml);
-            console.log("id", teddy._id, "name", teddy.name, "price", teddy.price, "imageUrl", teddy.imageUrl);
-        }
-        let div = `<div class="images">${htmlImages.join("")}</div>`
-        document.querySelector("#list").innerHTML = div;
-    })
-    .catch(function(err) {
-        console.log("Error", err)
-    });
+// Calling up the list of objects
+function getTeddies() {
+    return fetch(baseUrl + "/teddies")
+        .then((response) => {
+            return response.json()
+        })
+        .then((teddies) => {
+            console.log("teddies", teddies);
+            return teddies
+        })
+        .catch((error) => {
+            document.querySelector("#alert").innertHtml = `
+                <div class="error-message"  role="alert">
+                    Une erreur de chargement est intervenue
+                </div>`
+        })
+};
+
+async function list() {
+    const teddies = await getTeddies()
+    for(teddy of teddies) {
+        displayTeddies(teddy)
+    };
+}
+
+list();
+
+// Function to display the list of objects
+function displayTeddies() {
+    document.querySelector("#list").innerHTML += 
+        `<section class="presentation">
+            <a href="../FrontEnd/view/products.html?id=${teddy._id}">
+                <div class="image">
+                    <img src="${teddy.imageUrl}" alt="${teddy.name}" />
+                </div>
+                <div class="prodcut-name">
+                    <h2>${teddy.name}</h2>
+                </div>
+                <div class="product-description">
+                    ${teddy.description}
+                </div>
+                <div class="product-price">
+                    ${teddy.price}
+                </div>
+                <button class="button">Je découvre</button>
+            </a>
+        </section>`
+}

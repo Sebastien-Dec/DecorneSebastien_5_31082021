@@ -1,4 +1,4 @@
-async function listOfProducts() {
+/*async function listOfProducts() {
     const response = await fetch(baseUrl + "/teddies");
     const json = await response.json();
     console.log(json);
@@ -17,10 +17,12 @@ async function teddy() {
     for (let idOfTeddy of tabOfTeddy) {
     console.log("idOfTeddy", idOfTeddy);
         
-            let newDiv = `<p>Peluche : ${idOfTeddy.name}</p>
-                        <img alt="${idOfTeddy.name}" src="${idOfTeddy.imageUrl}" title="${idOfTeddy.price}"/>"`;
+            let newDiv = `<p>Nom : ${idOfTeddy.name}</p>
+                        <p>Id : ${idOfTeddy._id}</p>
+                        <img alt="${idOfTeddy.name}" src="${idOfTeddy.imageUrl}" title="${idOfTeddy.price}"/>
+                        <br>`;
                 document.querySelector("#exemple").innerHTML = newDiv;
-                console.log("teddy", idOfTeddy.name);    
+                console.log("teddy", idOfTeddy.name, idOfTeddy._id);    
         }
     
     
@@ -38,4 +40,4 @@ function factoriel(n) {
    return n;
 }
 factoriel(5);
-console.log(" La Factorielle de 5 est ", factoriel(5));
+console.log(" La Factorielle de 5 est ", factoriel(5));*/
