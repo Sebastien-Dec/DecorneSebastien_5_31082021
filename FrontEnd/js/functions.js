@@ -24,21 +24,36 @@ function formatPrice(price) {
 
 function buildTeddy(teddy) {
     let teddyHtml = 
-    `<section class="presentation">
-        <a href="../FrontEnd/view/products.html?id=${teddy._id}">
-            <div class="image">
-                <img src="${teddy.imageUrl}" alt="${teddy.name}" />
-            </div>
-            <div class="prodcut-name">
-                <h2>${teddy.name}</h2>
-            </div>
-            <div class="product-description">
-                ${teddy.description}
-            </div>
-            <div class="product-price">
-                ${formatPrice(teddy.price)}
-            </div>
-        </a>
-    </section>`;
-return teddyHtml;
+        `<section class="presentation">
+            <a href="../FrontEnd/view/products.html?id=${teddy._id}">
+                <div class="image">
+                    <img src="${teddy.imageUrl}" alt="${teddy.name}" />
+                </div>
+                <div class="product-name">
+                    <h2>${teddy.name}</h2>
+                </div>
+                <div class="product-description">
+                    ${teddy.description}
+                </div>
+                <div class="product-price">
+                    ${formatPrice(teddy.price)}
+                </div>
+            </a>
+        </section>`;
+    return teddyHtml;
 }
+
+/*function buildOption(colors) {
+    let optionColors = "";
+    for(let color of colors) {
+        optionColors += `<option value="${color}">${color}</option>`
+    }
+    let teddyColors =
+        `<div class="option">
+            <select class="teddy-colors">
+                ${optionColors}
+            </select>
+        </div>`;
+    return teddyColors;
+}*/
+

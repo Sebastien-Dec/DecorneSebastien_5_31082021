@@ -10,7 +10,7 @@ list.then((teddies) => {
         document.querySelector("#list").innerHTML = teddiesHtml;
     })
     .catch((error) => {
-        document.querySelector("#alert").innertHtml = `
+        document.querySelector(".alert").innertHtml = `
             <div class="error-message"  role="alert">
                 ${error}
             </div>`

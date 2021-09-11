@@ -12,4 +12,3 @@ teddyPromise.then(function(teddy) {
     let teddyHtml = buildTeddy(teddy);
     document.querySelector("#teddy").innerHTML = teddyHtml;
 })
-
