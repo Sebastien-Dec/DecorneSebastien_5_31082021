@@ -27,6 +27,7 @@ list();
 
 // Function to display the list of objects
 function displayTeddies() {
+    price = new Intl.NumberFormat("fr-FR", {style: "currency", currency: "EUR"}).format(teddy.price / 100);
     document.querySelector("#list").innerHTML += 
         `<section class="presentation">
             <a href="../FrontEnd/view/products.html?id=${teddy._id}">
@@ -40,7 +41,7 @@ function displayTeddies() {
                     ${teddy.description}
                 </div>
                 <div class="product-price">
-                    ${teddy.price}
+                    ${price}
                 </div>
                 <button class="button">Je découvre</button>
             </a>

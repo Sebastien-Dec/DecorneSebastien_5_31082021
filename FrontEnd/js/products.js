@@ -18,7 +18,7 @@ fetch(baseUrl + "/teddies/" + teddyId)
                     <div class="row">
                         <img src='${teddy.imageUrl}' alt='${teddy.name}' title='${teddy.description} />
                         <p class="description">${teddy.description}</p>'
-                        <span class="teddy.price">${teddy.price}</span>
+                        <span class="teddy.price">${price}</span>
                         <select class="teddy-color">
                             ${optionColor}
                         </select>
