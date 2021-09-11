@@ -1,31 +1,15 @@
+// Checking the display url
 console.log(document.location.href);
 const params = new URLSearchParams(window.location.search);
-teddyId = params.get("id");
+let teddyId = params.get("id");
 console.log("teddyId", teddyId);
-    
-fetch(baseUrl + "/teddies/" + teddyId)
-    .then(function(res) {
-        console.log("Response", res);
-        if (res.ok) {
-            return res.json();
-        }
-    })
-    .then(function(teddy) {
-        for(color of teddy.colors) {
-            optionColor += `<option value="${color}">${color}</option>`;
-        }
-        teddyHtml = `
-                    <div class="row">
-                        <img src='${teddy.imageUrl}' alt='${teddy.name}' title='${teddy.description} />
-                        <p class="description">${teddy.description}</p>'
-                        <span class="teddy.price">${price}</span>
-                        <select class="teddy-color">
-                            ${optionColor}
-                        </select>
-                    </div>
-                    `;
-        document.querySelector("#teddy").innerHTML = teddyHtml;
-    })
-    .catch(function(err) {
-        console.log("Error", err)
-    });
+
+//Access to the chosen teddy bear
+let teddyPromise = product(teddyId);
+console.log("teddy", teddyPromise);
+
+teddyPromise.then(function(teddy) {
+    let teddyHtml = buildTeddy(teddy);
+    document.querySelector("#teddy").innerHTML = teddyHtml;
+})
+

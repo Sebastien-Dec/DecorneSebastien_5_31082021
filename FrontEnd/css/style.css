@@ -7,13 +7,10 @@ header {
     font-size: 2rem;
 }
 
-.button {
+.button, .button-viewBasket a {
     background-color: blue;
     border-radius: 5px;
-}
-
-.button a {
-    color: white;
+    color: white !important;
 }
 
 #form ul {

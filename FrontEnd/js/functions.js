@@ -1,43 +1,44 @@
-/*async function listOfProducts() {
+async function listOfProducts() {
     const response = await fetch(baseUrl + "/teddies");
     const json = await response.json();
     console.log(json);
+    return json; 
+}
+
+async function getTeddy(teddyId) {
+    const response = await fetch(baseUrl + "/teddies/" + teddyId);
+    const json = await response.json();
     return json;
-    
 }
 
-list = listOfProducts();
-console.log("List", list);
-
-async function teddy() {
-    const response = await fetch(baseUrl + "/teddies");
-    const tabOfTeddy = await response.json();
-    console.log("tabOfTeddy", tabOfTeddy);
-    
-    for (let idOfTeddy of tabOfTeddy) {
-    console.log("idOfTeddy", idOfTeddy);
-        
-            let newDiv = `<p>Nom : ${idOfTeddy.name}</p>
-                        <p>Id : ${idOfTeddy._id}</p>
-                        <img alt="${idOfTeddy.name}" src="${idOfTeddy.imageUrl}" title="${idOfTeddy.price}"/>
-                        <br>`;
-                document.querySelector("#exemple").innerHTML = newDiv;
-                console.log("teddy", idOfTeddy.name, idOfTeddy._id);    
-        }
-    
-    
+async function product(id) {
+    let oneTeddy = await getTeddy(id);
+    console.log("oneTeddy", oneTeddy);
+    return oneTeddy;
 }
 
-teddy();
-
-// Exercice ecrire une fonction avec while ou or pour une factorielle
-function factoriel(n) {
-    let x = n;
-    while (x>1) {
-        n *= x-1;
-        x--;
-   }
-   return n;
+function formatPrice(price) {
+    let newPrice = new Intl.NumberFormat("fr-FR", {style: "currency", currency: "EUR"}).format(price / 100);
+    return newPrice;
 }
-factoriel(5);
-console.log(" La Factorielle de 5 est ", factoriel(5));*/
+
+function buildTeddy(teddy) {
+    let teddyHtml = 
+    `<section class="presentation">
+        <a href="../FrontEnd/view/products.html?id=${teddy._id}">
+            <div class="image">
+                <img src="${teddy.imageUrl}" alt="${teddy.name}" />
+            </div>
+            <div class="prodcut-name">
+                <h2>${teddy.name}</h2>
+            </div>
+            <div class="product-description">
+                ${teddy.description}
+            </div>
+            <div class="product-price">
+                ${formatPrice(teddy.price)}
+            </div>
+        </a>
+    </section>`;
+return teddyHtml;
+}
