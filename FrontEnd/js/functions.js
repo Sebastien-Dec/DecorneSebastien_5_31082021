@@ -74,17 +74,3 @@ function buildTeddy(teddy) {
     </div>`;
     return teddyHtml;
 }
-/*function buildOption(colors) {
-    let optionColors = "";
-    for(let color of colors) {
-        optionColors += `<option value="${color}">${color}</option>`
-    }
-    let teddyColors =
-        `<div class="option">
-            <select class="teddy-colors">
-                ${optionColors}
-            </select>
-        </div>`;
-    return teddyColors;
-}*/
-

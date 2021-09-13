@@ -40,7 +40,7 @@ img {
     width: 400px;
     height: 400px;
     object-fit: contain;
-    transform : scale(1);
+    transition: transform 400ms;
 }
 
 img:hover {
