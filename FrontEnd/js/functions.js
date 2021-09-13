@@ -80,7 +80,7 @@ function addProduct(teddy) {
     let teddies = [];
     if(cart == null) {
         teddies.push(teddy);
-        localStorage.setItem("cart", JSON.stringify(teddy));
+        localStorage.setItem("cart", JSON.stringify(teddies));
     } else {
         teddies = JSON.parse(cart);
     }

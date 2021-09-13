@@ -14,7 +14,7 @@ teddyPromise.then(function(teddy) {
 })
 
 // Add cart
-let AddCart = document.querySelector(".addCart");
+let AddCart = document.querySelector("#addCart");
 if(AddCart) {
-    AddCart.addEventListener("click", addProduct);
+    AddCart.addEventListener("click", addProduct(teddy));
 }
