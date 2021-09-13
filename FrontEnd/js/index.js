@@ -5,7 +5,7 @@ list.then((teddies) => {
         console.log("teddies", teddies);
         let teddiesHtml = "";
         for(teddy of teddies) {
-            teddiesHtml += buildTeddy(teddy);
+            teddiesHtml += buildTeddies(teddy);
         }
         document.querySelector("#list").innerHTML = teddiesHtml;
     })

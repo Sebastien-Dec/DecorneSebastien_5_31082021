@@ -22,8 +22,8 @@ function formatPrice(price) {
     return newPrice;
 }
 
-function buildTeddy(teddy) {
-    let teddyHtml = 
+function buildTeddies(teddy) {
+    let teddiesHtml = 
         `<section class="presentation">
             <a href="../FrontEnd/view/products.html?id=${teddy._id}">
                 <div class="image">
@@ -38,11 +38,42 @@ function buildTeddy(teddy) {
                 <div class="product-price">
                     ${formatPrice(teddy.price)}
                 </div>
+                <button class="button view" type="submit">Je découvre</button>
             </a>
         </section>`;
-    return teddyHtml;
+    return teddiesHtml;
 }
 
+function buildTeddy(teddy) {
+    let optionColors = "";
+    for(let color of teddy.colors) {
+        optionColors += `<option value="${color}">
+                            ${color}
+                        </option>`;
+        console.log("optionColors", optionColors);
+    }
+    let teddyHtml = 
+    `<h1>${teddy.name}</h1>
+    <section class="product">
+        <div class="image image-product">
+            <img src="${teddy.imageUrl}" alt="${teddy.name}" />
+        </div>
+        <div class="product-description">
+            ${teddy.description}
+        </div>
+        <div class="product-price">
+            ${formatPrice(teddy.price)}
+        </div>
+    </section>
+    <div id="addCart">
+            <select name="colors" id="optionColors">
+                <option value="">Choisissez votre couleur</option>
+                ${optionColors}
+            </select>
+            <button class="button addCart">Ajouter au panier</button>
+    </div>`;
+    return teddyHtml;
+}
 /*function buildOption(colors) {
     let optionColors = "";
     for(let color of colors) {
