@@ -65,12 +65,23 @@ function buildTeddy(teddy) {
             ${formatPrice(teddy.price)}
         </div>
     </section>
-    <div id="addCart">
+    <div id="addToCart">
             <select name="colors" id="optionColors">
                 <option value="">Choisissez votre couleur</option>
                 ${optionColors}
             </select>
-            <button class="button addCart">Ajouter au panier</button>
+            <button class="button" id="addCart" type="submit">Ajouter au panier</button>
     </div>`;
     return teddyHtml;
+}
+
+function addProduct(teddy) {
+    let cart = localStorage.getItem("cart");
+    let teddies = [];
+    if(cart == null) {
+        teddies.push(teddy);
+        localStorage.setItem("cart", JSON.stringify(teddy));
+    } else {
+        teddies = JSON.parse(cart);
+    }
 }

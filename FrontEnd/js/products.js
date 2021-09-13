@@ -12,3 +12,9 @@ teddyPromise.then(function(teddy) {
     let teddyHtml = buildTeddy(teddy);
     document.querySelector("#teddy").innerHTML = teddyHtml;
 })
+
+// Add cart
+let AddCart = document.querySelector(".addCart");
+if(AddCart) {
+    AddCart.addEventListener("click", addProduct);
+}
