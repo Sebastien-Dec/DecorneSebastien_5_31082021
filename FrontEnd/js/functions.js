@@ -75,6 +75,16 @@ function buildTeddy(teddy) {
     return teddyHtml;
 }
 
+/*function chooseOption() {
+    let option = document.querySelector("#optionColors");
+    if(option) {option.addEventListener("change", function() {
+        let colors = "";
+        this.value = colors;
+        return colors;
+    })
+    }
+}*/
+
 function addProduct(teddy) {
     let cart = localStorage.getItem("cart");
     let teddies = [];
@@ -83,5 +93,12 @@ function addProduct(teddy) {
         localStorage.setItem("cart", JSON.stringify(teddies));
     } else {
         teddies = JSON.parse(cart);
+    }
+}
+
+function removeProduct() {
+    let cart = localStorage.getItem ("cart");
+    if(cart == 1) {
+        localStorage.removeItem("cart");
     }
 }
