@@ -86,10 +86,18 @@ function buildTeddy(teddy) {
 }*/
 
 function addProduct(teddy) {
+    // Create Object
+    let teddyForCart = {
+        id : teddy._id,
+        name : teddy.name,
+        price : teddy.price,
+        color : teddy.colors,
+        quantity : 1,
+    }
     let cart = localStorage.getItem("cart");
     let teddies = [];
     if(cart == null) {
-        teddies.push(teddy);
+        teddies.push(teddyForCart);
         localStorage.setItem("cart", JSON.stringify(teddies));
     } else {
         teddies = JSON.parse(cart);
