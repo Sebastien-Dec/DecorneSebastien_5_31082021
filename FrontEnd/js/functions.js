@@ -1,3 +1,4 @@
+// Function to create the List of Products
 async function listOfProducts() {
     const response = await fetch(baseUrl + "/teddies");
     const json = await response.json();
@@ -5,23 +6,20 @@ async function listOfProducts() {
     return json; 
 }
 
+// Function to call Id
 async function getTeddy(teddyId) {
     const response = await fetch(baseUrl + "/teddies/" + teddyId);
     const json = await response.json();
     return json;
 }
 
-async function product(id) {
-    let oneTeddy = await getTeddy(id);
-    console.log("oneTeddy", oneTeddy);
-    return oneTeddy;
-}
-
+// Function for Price in Euro
 function formatPrice(price) {
     let newPrice = new Intl.NumberFormat("fr-FR", {style: "currency", currency: "EUR"}).format(price / 100);
     return newPrice;
 }
 
+// Function for HomePage
 function buildTeddies(teddy) {
     let teddiesHtml = 
         `<section class="presentation">
@@ -44,6 +42,7 @@ function buildTeddies(teddy) {
     return teddiesHtml;
 }
 
+// Function Teddy for product page
 function buildTeddy(teddy) {
     let optionColors = "";
     for(let color of teddy.colors) {
@@ -75,6 +74,7 @@ function buildTeddy(teddy) {
     return teddyHtml;
 }
 
+// Function AddCart
 function addProduct(teddy) {
     // Create Object
     let teddyForCart = {

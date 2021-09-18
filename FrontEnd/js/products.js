@@ -5,10 +5,11 @@ let teddyId = params.get("id");
 console.log("teddyId", teddyId);
 
 //Access to the chosen teddy bear
-let teddyPromise = product(teddyId);
+let teddyPromise = getTeddy(teddyId);
 console.log("teddy", teddyPromise);
 
 teddyPromise.then(function(teddy) {
+    // Create Product page
     let teddyHtml = buildTeddy(teddy);
     document.querySelector("#teddy").innerHTML = teddyHtml;
     // Add cart
