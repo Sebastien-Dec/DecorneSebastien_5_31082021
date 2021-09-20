@@ -8,19 +8,26 @@ console.log("teddyId", teddyId);
 let teddyPromise = getTeddy(teddyId);
 console.log("teddy", teddyPromise);
 
+let colors = "";
+
 teddyPromise.then(function(teddy) {
     // Create Product page
     let teddyHtml = buildTeddy(teddy);
     document.querySelector("#teddy").innerHTML = teddyHtml;
+    // Choose colors    
+   
+    let option = document.querySelector("#optionColors");
+    option.addEventListener("change", function(e) {
+        console.log("e", e.target.options[e.target.options.selectedIndex].value);
+        colors = e.target.options[e.target.options.selectedIndex].value;
+        console.log("colors", colors);
+        
+    })
     // Add cart
     let AddCart = document.querySelector("#addCart");
     if(AddCart) {
         AddCart.addEventListener("click", function (){addProduct(teddy)});
     }
-    // Choose colors    
-    let option = document.querySelector("#optionColors");
-    option.addEventListener("change", function(e) {
-        console.log("e", e.target.options[e.target.options.selectedIndex].value);
-    })
+    
 });
  

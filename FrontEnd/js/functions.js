@@ -19,7 +19,7 @@ function formatPrice(price) {
     return newPrice;
 }
 
-// Function for HomePage
+// Function for Build Teddy for HomePage
 function buildTeddies(teddy) {
     let teddiesHtml = 
         `<section class="presentation">
@@ -81,7 +81,7 @@ function addProduct(teddy) {
         id : `${teddy._id}`,
         name : `${teddy.name}`,
         price : `${teddy.price}`,
-        color : `${teddy.colors}`,
+        color : colors,
         image : `${teddy.imageUrl}`,
         quantity : 1
     }
@@ -92,9 +92,7 @@ function addProduct(teddy) {
         localStorage.setItem("cart", JSON.stringify(teddies));
     } else {
         teddies = JSON.parse(cart);
-
         teddies.push(teddyForCart);
-        
         localStorage.setItem("cart", JSON.stringify(teddies));
     }
 }
@@ -105,3 +103,4 @@ function removeProduct() {
         localStorage.removeItem("cart");
     }
 }
+
