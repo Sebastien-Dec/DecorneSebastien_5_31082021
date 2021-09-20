@@ -32,4 +32,3 @@ teddyPromise.then(function(teddy) {
          return colors; 
      })
 });
- 
