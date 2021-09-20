@@ -9,6 +9,7 @@ let teddyPromise = getTeddy(teddyId);
 console.log("teddy", teddyPromise);
 
 let colors = "";
+let quantity = 1;
 
 teddyPromise.then(function(teddy) {
 
@@ -27,7 +28,8 @@ teddyPromise.then(function(teddy) {
      option.addEventListener("change", function(e) {
          console.log("e", e.target.options[e.target.options.selectedIndex].value);
          colors = e.target.options[e.target.options.selectedIndex].value;
-         console.log("colors", colors);   
+         console.log("colors", colors);  
+         return colors; 
      })
 });
  

@@ -83,20 +83,25 @@ function addProduct(teddy) {
         price : `${teddy.price}`,
         color : colors,
         image : `${teddy.imageUrl}`,
-        quantity : 1
+        quantity : quantity,
     }
     let cart = localStorage.getItem("cart");
     let teddies = [];
     if(cart == null) {
         teddies.push(teddyForCart);
         localStorage.setItem("cart", JSON.stringify(teddies));
+        confirmAddCart();
     } else {
-        teddies = JSON.parse(cart);
-        teddies.push(teddyForCart);
-        localStorage.setItem("cart", JSON.stringify(teddies));
+            teddies = JSON.parse(cart);
+            teddies.push(teddyForCart);
+            localStorage.setItem("cart", JSON.stringify(teddies)); 
+            confirmAddCart();  
     }
 }
 
+function confirmAddCart() {
+    alert(`${teddy.name} a bien été ajouté à votre panier`);
+};
 /*function removeProduct() {
     let cart = localStorage.getItem ("cart");
     if(cart == 1) {
