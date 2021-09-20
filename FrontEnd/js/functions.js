@@ -97,10 +97,14 @@ function addProduct(teddy) {
     }
 }
 
-function removeProduct() {
+/*function removeProduct() {
     let cart = localStorage.getItem ("cart");
     if(cart == 1) {
         localStorage.removeItem("cart");
     }
-}
+}*/
 
+// Function to call cart in localstorage
+function getTeddiesFromCart() {
+    localStorage.getItem("cart");
+}
