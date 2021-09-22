@@ -83,7 +83,7 @@ function addProduct(teddy) {
         price : `${teddy.price}`,
         color : colors,
         image : `${teddy.imageUrl}`,
-        quantity : quantity,
+        quantity : 1,
     }
     let cart = localStorage.getItem("cart");
     let teddies = [];
@@ -92,11 +92,6 @@ function addProduct(teddy) {
         cart = JSON.stringify(teddies);
     } else {
         teddies = JSON.parse(cart);
-        for(let teddy of teddies) {
-            if(teddy.name == teddyForCart.id && teddy.colors == teddyForCart.color) {
-                quantity++;
-            }
-        }
         teddies.push(teddyForCart);
         cart = JSON.stringify(teddies);  
     }
@@ -118,9 +113,33 @@ function confirmAddCart() {
 // Function to call cart in localstorage
 function getTeddiesFromCart() {
     let cart = localStorage.getItem("cart");
-    console.log("cart", cart);
-    let cartForPage = JSON.parse(cart);
-    console.log("cartForPage", cartForPage)
-    document.querySelectorAll("#recap").innerHTML = cartForPage;
+    cart = JSON.parse(cart);
+    let productInCart = "";
+    for(productIncart of cart){
+        for(let i=0; i <= cart.length; i+=1){
+            productInCart = {
+                image: cart[i].image,
+                id: cart[i].id,
+                name: cart[i].name,
+                color: cart[i].color,
+                price:cart[i].price,
+                quantity: cart[i].quantity
+            };
+            let totalPrice = productInCart.quantity * productInCart.price;
+            let productCart = `
+                <tr>
+                    <td><img src="${productInCart.image}" alt="${productInCart.name}" class="product-image" /></td>
+                    <td class="id">${productInCart.id}</td>
+                    <td class="product-name">${productInCart.name}</td>
+                    <td class="product-color">${productInCart.color}</td>
+                    <td class="price">${formatPrice(productInCart.price)}</td>
+                    <td class="product-quantity">${productInCart.quantity}</td>
+                    <td class="total-price">${formatPrice(totalPrice)}</td>
+                </tr>
+                `;
+                document.querySelector("#productInCart").innerHTML += productCart;
+        }
+    }
 }
+
 

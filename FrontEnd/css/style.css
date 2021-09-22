@@ -4,7 +4,7 @@ header {
     margin: 20px;
 }
 
-.siteName {
+.siteName, .siteName>a {
     font-size: 2rem;
 }
 
@@ -36,18 +36,18 @@ a {
     font-size: 1.3rem;
 }
 
-img {
+.image {
     width: 400px;
     height: 400px;
     object-fit: contain;
     transition: transform 400ms;
 }
 
-img:hover {
+.image:hover {
     transform: scale(2);
 }
 
-.presentation a, .product {
+.presentation a, .product{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,4 +84,31 @@ footer {
 
 #optionColors {
     font-size: 1.3rem;
+}
+
+.total-price, .product-quantity, .product-name {
+    font-weight: bold;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.totalOfCart {
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px;
 }

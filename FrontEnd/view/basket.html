@@ -14,24 +14,25 @@
                 <a href="../index.html">Orinoco</a>
             </div>
         </header>
-
         <section id="recap">
-            <div class="product-image">
-                <!-- Product image -->
-            </div>
-            <div class="product-name">
-                <!-- Product name -->
-            </div>
-            <div class="quantity">
-                <!-- Quantity to order -->
-            </div>
-            <div class="price">
-                <!-- Price of the product -->
-            </div>
-            <div class="totalPrice">
-                <!-- Total price of order -->
-            </div>
+            <table>
+                <tr>
+                    <th>Image</th>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Couleur</th>
+                    <th>Prix Unitaire</th>
+                    <th>Quantité</th>
+                    <th>Prix Total</th>
+                </tr>
+                <tbody id="productInCart">
+                </tbody>
+            </table>
+           
         </section>
+        <div class="totalOfCart">
+            <span class="totalCart">Prix Total de votre Panier :</span>
+        </div>
         <section id="form">
             <ul>
                 <li><input id="firstName" placeholder="Votre nom" /></li>
