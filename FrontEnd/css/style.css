@@ -36,7 +36,7 @@ a {
     font-size: 1.3rem;
 }
 
-.image {
+.image > img {
     width: 400px;
     height: 400px;
     object-fit: contain;

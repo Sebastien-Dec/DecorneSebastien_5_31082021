@@ -25,7 +25,7 @@ function buildTeddies(teddy) {
         `<section class="presentation">
             <a href="../FrontEnd/view/products.html?id=${teddy._id}">
                 <div class="image">
-                    <img src="${teddy.imageUrl}" alt="${teddy.name}" />
+                    <img src="${teddy.imageUrl}" alt="${teddy.name} />
                 </div>
                 <div class="product-name">
                     <h2>${teddy.name}</h2>
@@ -74,6 +74,7 @@ function buildTeddy(teddy) {
     return teddyHtml;
 }
 
+let quantity = 1;
 // Function AddCart
 function addProduct(teddy) {
     // Create Object
@@ -83,7 +84,7 @@ function addProduct(teddy) {
         price : `${teddy.price}`,
         color : colors,
         image : `${teddy.imageUrl}`,
-        quantity : 1,
+        quantity : quantity,
     }
     let cart = localStorage.getItem("cart");
     let teddies = [];
