@@ -143,4 +143,83 @@ function getTeddiesFromCart() {
     }
 }
 
+function buildContact(firstName, lastName, address, zipCode, city, email) {
+    firstName = document.forms[firstName].elements["firstName"].value;
+    lastName = document.forms[lastName].elements["lastName"].value;
+    address = document.forms[address].elements["address"].value;
+    zipCode = document.forms[zipCode].elements["zipCode"].value;
+    city = document.forms[city].elements["city"].value;
+    email = document.forms[email].elements["email"].value;
+    let customer = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "address": address,
+        "zipCode": zipCode,
+        "city": city,
+        "email": email
+    };
+    return customer;
+}
+
+//Validate contact
+function validateContact(customer) {
+    if(customer == null) {
+        alert("Veuillez remplir le formulaire");
+    } else if(customer.firstName == null || customer.firstName.trim() == "") {
+        alert("Veuillez renseigner votre nom");
+    } else if(customer.lastName == null || customer.lastName.trim() == "") {
+        alert("Veuillez renseigner votre prénom");
+    } else if(customer.address == null || customer.address.trim() == "") {
+        alert("Veuillez rensigner votre addresse")
+    } else if(customer.zipCode == null || customer.zipCode.trim() == "") {
+        alert("Veuillez rensigner votre code postal");
+    } else if(customer.city == null || customer.city.trim() == "") {
+        alert("Veuillez renseigner votre ville");
+    } else if(customer.email == null || customer.email.trim() =="") {
+        alert("Veuillez renseigner votre email");
+    } else {
+        return null;
+    }
+}
+
+//For validate Email
+function validateEmail() {
+    let inputEmail = document.querySelector("#email").addEventListener("change", function() {
+        validateEmail(this);
+    });
+    const validateEmail = function(inputEmail) {
+        let emailRegExp = new RegExp('^[a-zA-Z0-9.-_] + [@]{1}[a-zA-Z0-9.-_] + [.]{1}[a-z]{2,10}$','g');
+        let testEmail = emailRegExp.test(inputEmail.value);
+        let small = inputEmail.nextElementSibling;
+        if(testEmail) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+function computeTotalPriceFromCart() {
+    let teddies = getTeddiesFromCart();
+    for(let i=0; i < teddies.length; i+= 1) {
+        TotalPrice += totalPrice;
+        document.querySelector("#totalPriceOfCart").innerHTML = TotalPrice;
+    }
+}
+
+let contact = buildContact("","","","","","");
+let message = validateContact(customer);
+
+if(message != null) {
+    alert(message);
+    return;
+}
+
+function getFromTeddies(teddies) {
+    let teddyIds = [];
+    for(let teddy of teddies) {
+        teddiesIds.push(teddy._id);
+    }
+    return teddiesIds;
+}
 

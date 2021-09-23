@@ -31,19 +31,23 @@
            
         </section>
         <div class="totalOfCart">
-            <span class="totalCart">Prix Total de votre Panier :</span>
+            <span class="totalCart">Prix Total de votre Panier :<span id="totalPriceOfCart"></span></span>
         </div>
-        <section id="form">
-            <ul>
-                <li><input id="firstName" placeholder="Votre nom" /></li>
-                <li><input id="lastName" placeholder="Votre prénom" /></li>
-                <li><input id="address" placeholder="Votre adresse" /></li>
-                <li><input id="zipCode" placeholder="Votre code postal" /></li>
-                <li><input id="city" placeholder="Votre ville" /></li>
-                <li><input id="email" type="email" placeholder="Votre email" /></li>
-                <li><button id="submit" type="submit">Commander</button></li>
-            </ul>
-        </section>
+        <form id="contact">
+            <label for="firstName">Votre Nom</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <label for="lastName">Votre Prénom</label>
+            <input type="text" id="lastName" name="lastname" required>
+            <label for="address">Votre Adresse</label>
+            <input type="text" id="address" name="address" required>
+            <label for="zipCode">Votre Code Postal</label>
+            <input type="text" name="zipCode" id="zipCode" required>
+            <label for="city">Votre Ville</label>
+            <input type="text" name="city" id="city" required>
+            <label for="email">Votre email</label>
+            <input type="email" name="email" id="email" required>
+            <button type="submit" class="button button-order" id="order">Commander</button>
+        </form>
         <footer>
             <div class="siteName">
                 <a href="../index.html">Orinoco</a>
