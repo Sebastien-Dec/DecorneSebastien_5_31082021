@@ -19,7 +19,7 @@ teddyPromise.then(function(teddy) {
     // Add cart
     let AddCart = document.querySelector("#addCart");
     if(AddCart) {
-        AddCart.addEventListener("click", function (){addProduct(teddy)});
+        AddCart.addEventListener("click", function (){addTeddyToCart(teddy)});
     }
 
      // Choose colors    

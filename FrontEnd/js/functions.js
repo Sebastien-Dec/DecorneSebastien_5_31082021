@@ -74,9 +74,9 @@ function buildTeddy(teddy) {
     return teddyHtml;
 }
 
-let quantity = 1;
+let quantity =1;
 // Function AddCart
-function addProduct(teddy) {
+function addTeddyToCart(teddy) {
     // Create Object
     let teddyForCart = {
         id : `${teddy._id}`,
@@ -86,17 +86,17 @@ function addProduct(teddy) {
         image : `${teddy.imageUrl}`,
         quantity : quantity,
     }
-    let cart = localStorage.getItem("cart");
-    let teddies = [];
-    if(cart == null) {
+    let teddiesJSON = localStorage.getItem(cartKey);
+    if(teddiesJSON == null) {
+        let teddies = [];
         teddies.push(teddyForCart);
-        cart = JSON.stringify(teddies);
+        teddiesJSON = JSON.stringify(teddies);
     } else {
-        teddies = JSON.parse(cart);
+        let teddies = JSON.parse(teddiesJSON);
         teddies.push(teddyForCart);
-        cart = JSON.stringify(teddies);  
+        teddiesJSON = JSON.stringify(teddies);
     }
-    localStorage.setItem("cart", cart);
+    localStorage.setItem("cart", teddiesJSON);
     confirmAddCart();
 }
 
@@ -115,67 +115,51 @@ function confirmAddCart() {
 function getTeddiesFromCart() {
     let cart = localStorage.getItem("cart");
     cart = JSON.parse(cart);
-    let productInCart = "";
-    for(productIncart of cart){
-        for(let i=0; i <= cart.length; i+=1){
-            productInCart = {
-                image: cart[i].image,
-                id: cart[i].id,
-                name: cart[i].name,
-                color: cart[i].color,
-                price:cart[i].price,
-                quantity: cart[i].quantity
-            };
-            let totalPrice = productInCart.quantity * productInCart.price;
-            let productCart = `
-                <tr>
-                    <td><img src="${productInCart.image}" alt="${productInCart.name}" class="product-image" /></td>
-                    <td class="id">${productInCart.id}</td>
-                    <td class="product-name">${productInCart.name}</td>
-                    <td class="product-color">${productInCart.color}</td>
-                    <td class="price">${formatPrice(productInCart.price)}</td>
-                    <td class="product-quantity">${productInCart.quantity}</td>
-                    <td class="total-price">${formatPrice(totalPrice)}</td>
-                </tr>
-                `;
-                document.querySelector("#productInCart").innerHTML += productCart;
-        }
+    for(let i=0; i <= cart.length; i+=1){
+    let productCart = `
+        <tr>
+            <td><img src="${cart[i].image}" alt="${cart[i].name}" class="product-image" /></td>
+            <td class="id">${cart[i].id}</td>
+            <td class="product-name">${cart[i].name}</td>
+            <td class="product-color">${cart[i].color}</td>
+            <td class="price">${formatPrice(cart[i].price)}</td>
+            <td class="product-quantity">${cart[i].quantity}</td>
+            <td class="total-price">${formatPrice(cart[i].totalPrice)}</td>
+        </tr>
+        `;
+    document.querySelector("#productInCart").innerHTML += productCart; 
     }
 }
 
-function buildContact(firstName, lastName, address, zipCode, city, email) {
-    firstName = document.forms[firstName].elements["firstName"].value;
-    lastName = document.forms[lastName].elements["lastName"].value;
-    address = document.forms[address].elements["address"].value;
-    zipCode = document.forms[zipCode].elements["zipCode"].value;
-    city = document.forms[city].elements["city"].value;
-    email = document.forms[email].elements["email"].value;
-    let customer = {
+function buildContact(firstName, lastName, address, city, email) {
+    firstName = document.querySelector("#firstName").value;
+    lastName = document.querySelector("#lastName").value;
+    address = document.querySelector("#address").value;
+    city = document.querySelector("#city").value;
+    email = document.querySelector("#email").value;
+    let contact = {
         "firstName": firstName,
         "lastName": lastName,
         "address": address,
-        "zipCode": zipCode,
         "city": city,
         "email": email
     };
-    return customer;
+    return contact;
 }
 
 //Validate contact
-function validateContact(customer) {
-    if(customer == null) {
+function validateContact(contact) {
+    if(contact == null) {
         alert("Veuillez remplir le formulaire");
-    } else if(customer.firstName == null || customer.firstName.trim() == "") {
+    } else if(contact.firstName == null || contact.firstName.trim() == "") {
         alert("Veuillez renseigner votre nom");
-    } else if(customer.lastName == null || customer.lastName.trim() == "") {
+    } else if(contact.lastName == null || contact.lastName.trim() == "") {
         alert("Veuillez renseigner votre prénom");
-    } else if(customer.address == null || customer.address.trim() == "") {
+    } else if(contact.address == null || contact.address.trim() == "") {
         alert("Veuillez rensigner votre addresse")
-    } else if(customer.zipCode == null || customer.zipCode.trim() == "") {
-        alert("Veuillez rensigner votre code postal");
-    } else if(customer.city == null || customer.city.trim() == "") {
+    } else if(contact.city == null || contact.city.trim() == "") {
         alert("Veuillez renseigner votre ville");
-    } else if(customer.email == null || customer.email.trim() =="") {
+    } else if(contact.email == null || contact.email.trim() =="") {
         alert("Veuillez renseigner votre email");
     } else {
         return null;
@@ -201,21 +185,21 @@ function validateEmail() {
 
 function computeTotalPriceFromCart() {
     let teddies = getTeddiesFromCart();
-    for(let i=0; i < teddies.length; i+= 1) {
-        TotalPrice += totalPrice;
-        document.querySelector("#totalPriceOfCart").innerHTML = TotalPrice;
+    let prixTotal = "";
+    for(let teddy in teddies) {
+        prixTotal += teddy.totalPrice;
     }
+    document.querySelector("#totalCart").innerHTML = `Prix Total de votre Panier : ${prixTotal}`;
 }
 
-let contact = buildContact("","","","","","");
-let message = validateContact(customer);
+let contact = buildContact("","","","","");
+let message = validateContact(contact);
 
 if(message != null) {
     alert(message);
-    return;
 }
 
-function getFromTeddies(teddies) {
+function getIdFromTeddies(teddies) {
     let teddyIds = [];
     for(let teddy of teddies) {
         teddiesIds.push(teddy._id);
@@ -223,3 +207,23 @@ function getFromTeddies(teddies) {
     return teddiesIds;
 }
 
+async function sendOrder(contact, teddies) {
+    for(teddies of teddiesId) {
+        let response = await fetch(baseUrl + "/teddies/order", {
+            method: POST,
+            body: contact
+    });
+    let json = await response.json();
+    return json;
+}
+
+let teddiesCart = getTeddiesFromCart();
+let teddyIds = getFromTeddies(teddiesCart);
+let orderPromise = sendOrder(contact, teddyIds);
+
+orderPromise.then(function(order) {
+    console.log(order.contact, order.products, order.orderId);
+    let totalPrice = computeTotalPriceFromCart();
+
+})
+}

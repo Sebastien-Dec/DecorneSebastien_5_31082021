@@ -1,6 +1,5 @@
 getTeddiesFromCart();
-document.querySelector("#order").addEventListener('click',buildContact(firstName, lastName, address, zipCode, city, email));
-document.querySelector("#order").addEventListener("click",validateContact(customer));
+document.querySelector("#order").addEventListener('click',buildContact(firstName, lastName, address, city, email));
 validateEmail();
 computeTotalPriceFromCart();
-document.querySelector("#totalPriceOfCart").innerHTML = TotalPrice;
+
