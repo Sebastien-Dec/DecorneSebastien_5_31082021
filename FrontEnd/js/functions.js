@@ -74,10 +74,11 @@ function buildTeddy(teddy) {
     return teddyHtml;
 }
 
-let quantity =1;
+let quantity = 1;
 // Function AddCart
 function addTeddyToCart(teddy) {
     // Create Object
+    let totalPrice = (teddy.price * quantity);
     let teddyForCart = {
         id : `${teddy._id}`,
         name : `${teddy.name}`,
@@ -85,6 +86,7 @@ function addTeddyToCart(teddy) {
         color : colors,
         image : `${teddy.imageUrl}`,
         quantity : quantity,
+        totalPrice : totalPrice
     }
     let teddiesJSON = localStorage.getItem(cartKey);
     if(teddiesJSON == null) {
@@ -149,20 +151,37 @@ function buildContact(firstName, lastName, address, city, email) {
 
 //Validate contact
 function validateContact(contact) {
+    let firstName = document.forms["contact"]["firstName"];
+    let lastName = document.forms["contact"]["lastName"];
+    let address = document.forms["contact"]["address"];
+    let city = document.forms["contact"]["city"];
+    let email = document.forms["contact"]["email"];
     if(contact == null) {
         alert("Veuillez remplir le formulaire");
-    } else if(contact.firstName == null || contact.firstName.trim() == "") {
+        contact.focus();
+        return false;
+    } else if(firstName == null || contact.firstName.trim() == "") {
         alert("Veuillez renseigner votre nom");
-    } else if(contact.lastName == null || contact.lastName.trim() == "") {
+        firstName.focus();
+        return false;
+    } else if(lastName == null || lastName.trim() == "") {
         alert("Veuillez renseigner votre prénom");
-    } else if(contact.address == null || contact.address.trim() == "") {
-        alert("Veuillez rensigner votre addresse")
-    } else if(contact.city == null || contact.city.trim() == "") {
+        lastName.focus();
+        return false;
+    } else if(address == null || address.trim() == "") {
+        alert("Veuillez rensigner votre addresse");
+        adress.focus();
+        return false;
+    } else if(city == null || city.trim() == "") {
         alert("Veuillez renseigner votre ville");
-    } else if(contact.email == null || contact.email.trim() =="") {
+        city.focus();
+        return false;
+    } else if(email == null || email.trim() =="") {
         alert("Veuillez renseigner votre email");
+        email.focus();
+        return false
     } else {
-        return null;
+        return true;
     }
 }
 
