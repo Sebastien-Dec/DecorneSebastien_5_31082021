@@ -30,12 +30,18 @@ form {
     margin: 20px ;
 }
 
-label, input {
+label, input, .total-price, .totalPrice {
     margin: 5px;
     font-weight: bold;
     font-size: 1.3rem;
 }
 
+.thankYou {
+    margin: 20px;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+}
 .button-order {
     margin: 20px 0;
 }
@@ -56,7 +62,7 @@ a {
     transform: scale(2);
 }
 
-.presentation a, .product{
+.presentation a, .product, #recapOrder{
     display: flex;
     align-items: center;
     justify-content: space-between;

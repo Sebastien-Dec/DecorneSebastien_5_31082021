@@ -1,15 +1,7 @@
 let form = document.querySelector("#order");
 form.addEventListener("click", function(event) {
     event.preventDefault();
-    let firstName = document.querySelector("input[name='firstName']").value;
-    let lastName = document.querySelector("input[name='lastName']");
-    let address = document.querySelector("input[name='address']").value;
-    let city = document.querySelector("input[name='city']").value;
-    let email = document.querySelector("input[name='email']").value;
-
-    console.log(firstName, lastName, address, city, email);
-
-    //Appeler la fonction pour construire le contact avec let contact
+    //Call the function to build the contact with let contact
     let contact = buildContact(firstName, lastName, address, city, email);
     let message = validateContact(contact);
     //let email = validateEmail(email);
@@ -19,11 +11,20 @@ form.addEventListener("click", function(event) {
     }
 }, false);
 
-let teddiesCart = getTeddiesFromCart();
-let teddyIds = getIdFromTeddies(teddiesCart);
+let teddies = getTeddiesFromCart();
+let teddiesHTMLForTable = "";
+for(let teddy of teddies) {
+    teddiesHTMLForTable += buildTeddyForTable(teddy);
+}
+teddiesHTMLForTable += buildTeddiesTotalPriceForTable();
+
+document.querySelector("#productInCart").innerHTML = teddiesHTMLForTable;
+
+
+let teddyIds = getIdFromTeddies(teddies);
 let orderPromise = sendOrder(contact, teddyIds);
 
 orderPromise.then(function(order) {
     console.log(order.contact, order.products, order.orderId);
-    let totalPrice = computeTotalPriceFromCart();
 })
+

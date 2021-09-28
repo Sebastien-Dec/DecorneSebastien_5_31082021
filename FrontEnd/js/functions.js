@@ -2,7 +2,6 @@
 async function listOfProducts() {
     const response = await fetch(baseUrl + "/teddies");
     const json = await response.json();
-    console.log(json);
     return json; 
 }
 
@@ -116,26 +115,61 @@ function confirmAddCart() {
     alert('Cet article a bien été ajouté à votre panier');
 }
 
-// Function to call cart in localstorage
+//Function that returns an array of teddies that are in the basket (localstorage)
 function getTeddiesFromCart() {
-    let cart = localStorage.getItem(cartKey);
-    cart = JSON.parse(cart);
-    for(let i=0; i <= cart.length; i+=1){
-    let productCart = `
-        <tr>
-            <td><img src="${cart[i].image}" alt="${cart[i].name}" class="product-image" /></td>
-            <td class="id">${cart[i].id}</td>
-            <td class="product-name">${cart[i].name}</td>
-            <td class="product-color">${cart[i].color}</td>
-            <td class="price">${formatPrice(cart[i].price)}</td>
-            <td class="product-quantity">${cart[i].quantity}</td>
-            <td class="total-price">${formatPrice(cart[i].totalPrice)}</td>
-        </tr>
-        `;
-    document.querySelector("#productInCart").innerHTML += productCart; 
+    let teddiesJSON = localStorage.getItem(cartKey);
+    if(teddiesJSON == null) {
+        return[];
+    } else {
+        return JSON.parse(teddiesJSON);
     }
 }
 
+//Function to build a teddy as a table row for display in a table
+function buildTeddyForTable(teddy) {
+    return `
+        <tr>
+            <td><img src="${teddy.image}" alt="${teddy.name}" class="product-image" /></td>
+            <td class="id">${teddy.id}</td>
+            <td class="product-name">${teddy.name}</td>
+            <td class="product-color">${teddy.color}</td>
+            <td class="price">${formatPrice(teddy.price)}</td>
+            <td class="product-quantity">${teddy.quantity}</td>
+            <td class="total-price">${formatPrice(teddy.totalPrice)}</td>
+        </tr>
+        `; 
+}
+
+//Function to build the line which will display (in table form)
+//the total price of the products 
+function buildTeddiesTotalPriceForTable() {
+    return `<tr>
+                <td colspan="6" class="total-price">TOTAL</td>
+                <td class="total-price">${formatPrice(computeTotalPriceFromCart())}</td>
+            </tr>`;
+}
+
+//A function allowing to calculate the total price of the teddies which are in the basket (localStorage)
+function computeTotalPriceFromCart() {
+    let teddies = getTeddiesFromCart();
+    //browse the teddies object and sum all the `prices`
+    let sum = 0;
+    for(let teddy of teddies) {
+        sum += teddy.totalPrice;
+    }
+    return sum;
+}
+
+//Function which takes as parameter a fuul array of teddies 
+//and returns an array of _id of these teddies
+function getIdFromTeddies(teddies) {
+    let teddiesIds = [];
+    for(let teddy of teddies) {
+        teddiesIds.push(teddy._id);
+    }
+    return teddiesIds;
+}
+//Function that allows you to build the contact object from the contact information
 function buildContact(firstName, lastName, address, city, email) {
     firstName = document.querySelector("#firstName").value;
     lastName = document.querySelector("#lastName").value;
@@ -152,17 +186,17 @@ function buildContact(firstName, lastName, address, city, email) {
     return contact;
 }
 
-//Validate contact
+//Function that allows to validate / check the information 
+//of the contact placing the order
 function validateContact(contact) {
     if(contact == null) {
         alert("Veuillez remplir le formulaire");
-        contact.focus();
         return false;
     } else if(contact.firstName == null || contact.firstName.trim() == "") {
-        alert("Veuillez renseigner votre nom");
+        alert("Veuillez renseigner votre prénom");
         return false;
     } else if(contact.lastName == null || contact.lastName.trim() == "") {
-        alert("Veuillez renseigner votre prénom");
+        alert("Veuillez renseigner votre nom");
         return false;
     } else if(contact.address == null || contact.address.trim() == "") {
         alert("Veuillez rensigner votre addresse");
@@ -173,8 +207,13 @@ function validateContact(contact) {
     } else if(contact.email == null || contact.email.trim() =="") {
         alert("Veuillez renseigner votre email");
         return false;
+    } else if(contact.email.indexOf('@') == -1) {
+        alert("Ceci n'est pas une adresse mail");
+        return false;
     } else { 
-        return true;
+        setTimeout(() => {
+            document.querySelector("#order").addEventListener("click", window.location.href = 'ordered.html');    
+        }, 1000); 
     }
 }
 
@@ -182,23 +221,6 @@ function validateContact(contact) {
 function validateEmail(email) {
     let emailRegExp = new RegExp('^[a-zA-Z0-9.-_] + [@]{1}[a-zA-Z0-9.-_] + [.]{1}[a-z]{2,10}$','g');
     return emailRegExp.test(email);
-}
-
-function computeTotalPriceFromCart() {
-    let teddies = getTeddiesFromCart();
-    let prixTotal = 0;
-    for(let teddy in teddies) {
-        prixTotal += teddyForCart.totalPrice;
-    }
-    return prixTotal;
-}
-
-function getIdFromTeddies(teddies) {
-    let teddyIds = [];
-    for(let teddy of teddies) {
-        teddiesIds.push(teddy._id);
-    }
-    return teddiesIds;
 }
 
 //Function to send customer information and product identification
@@ -210,15 +232,12 @@ function getIdFromTeddies(teddies) {
  */
 async function sendOrder(contact, teddyIds) {
     let response = await fetch(baseUrl + "/teddies/order", {
-        method: POST,
+        method: 'POST',
         body: JSON.stringify({
             "contact": contact,
-            "products": teddyIds
+            "products": teddyIds,
         })
     });
     let json = await response.json();
     return json;
 }
-
-
-
