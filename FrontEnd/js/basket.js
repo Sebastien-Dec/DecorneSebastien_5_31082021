@@ -28,3 +28,4 @@ orderPromise.then(function(order) {
     console.log(order.contact, order.products, order.orderId);
 })
 
+document.querySelector(".delete").addEventListener("click", removeTeddyToCart);

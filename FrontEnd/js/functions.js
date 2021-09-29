@@ -115,6 +115,17 @@ function confirmAddCart() {
     alert('Cet article a bien été ajouté à votre panier');
 }
 
+//Function to remove product in cart
+function removeTeddyToCart(teddy) {
+    teddy = e.target.classList[1].slice();
+    teddy.splice(index, 1);
+    localStorage.setItem('anyItem', JSON.stringify(items));
+ 
+    if (items.length === 0) {
+        localStorage.removeItem('anyItem');
+    }
+}
+
 //Function that returns an array of teddies that are in the basket (localstorage)
 function getTeddiesFromCart() {
     let teddiesJSON = localStorage.getItem(cartKey);
@@ -136,6 +147,9 @@ function buildTeddyForTable(teddy) {
             <td class="price">${formatPrice(teddy.price)}</td>
             <td class="product-quantity">${teddy.quantity}</td>
             <td class="total-price">${formatPrice(teddy.totalPrice)}</td>
+            <td>
+                <button class="delete"><i class="far fa-trash-alt"></i></button>
+            </td>
         </tr>
         `; 
 }
@@ -149,7 +163,8 @@ function buildTeddiesTotalPriceForTable() {
             </tr>`;
 }
 
-//A function allowing to calculate the total price of the teddies which are in the basket (localStorage)
+//A function allowing to calculate the total price 
+//of the teddies which are in the basket (localStorage)
 function computeTotalPriceFromCart() {
     let teddies = getTeddiesFromCart();
     //browse the teddies object and sum all the `prices`
