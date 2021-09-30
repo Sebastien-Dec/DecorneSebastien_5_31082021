@@ -116,14 +116,10 @@ function confirmAddCart() {
 }
 
 //Function to remove product in cart
-function removeTeddyToCart(teddy) {
-    teddy = e.target.classList[1].slice();
-    teddy.splice(index, 1);
-    localStorage.setItem('anyItem', JSON.stringify(items));
- 
-    if (items.length === 0) {
-        localStorage.removeItem('anyItem');
-    }
+function removeTeddyToCart() {
+    teddiesParse.splice(teddiesParse, 1);
+    localStorage.setItem(cartKey, JSON.stringify(teddiesParse));
+    window.location.reload();
 }
 
 //Function that returns an array of teddies that are in the basket (localstorage)
@@ -132,7 +128,8 @@ function getTeddiesFromCart() {
     if(teddiesJSON == null) {
         return[];
     } else {
-        return JSON.parse(teddiesJSON);
+        teddiesParse = JSON.parse(teddiesJSON);
+        return teddiesParse;
     }
 }
 
@@ -148,7 +145,7 @@ function buildTeddyForTable(teddy) {
             <td class="product-quantity">${teddy.quantity}</td>
             <td class="total-price">${formatPrice(teddy.totalPrice)}</td>
             <td>
-                <button class="delete"><i class="far fa-trash-alt"></i></button>
+                <button class="delete" onclick="removeTeddyToCart()"><i class="far fa-trash-alt"></i></button>
             </td>
         </tr>
         `; 
@@ -225,11 +222,11 @@ function validateContact(contact) {
     } else if(contact.email.indexOf('@') == -1) {
         alert("Ceci n'est pas une adresse mail");
         return false;
-    } else { 
+    } /*else { 
         setTimeout(() => {
             document.querySelector("#order").addEventListener("click", window.location.href = 'ordered.html');    
         }, 1000); 
-    }
+    }*/
 }
 
 //For validate Email

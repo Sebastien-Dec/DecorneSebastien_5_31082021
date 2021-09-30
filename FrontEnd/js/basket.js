@@ -21,6 +21,7 @@ teddiesHTMLForTable += buildTeddiesTotalPriceForTable();
 document.querySelector("#productInCart").innerHTML = teddiesHTMLForTable;
 
 
+
 let teddyIds = getIdFromTeddies(teddies);
 let orderPromise = sendOrder(contact, teddyIds);
 
@@ -28,4 +29,3 @@ orderPromise.then(function(order) {
     console.log(order.contact, order.products, order.orderId);
 })
 
-document.querySelector(".delete").addEventListener("click", removeTeddyToCart);
