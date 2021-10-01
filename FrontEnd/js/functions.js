@@ -177,10 +177,11 @@ function computeTotalPriceFromCart() {
 function getIdFromTeddies(teddies) {
     let teddiesIds = [];
     for(let teddy of teddies) {
-        teddiesIds.push(teddy._id);
+        teddiesIds.push(teddy.id);
     }
     return teddiesIds;
 }
+
 //Function that allows you to build the contact object from the contact information
 function buildContact(firstName, lastName, address, city, email) {
     firstName = document.querySelector("#firstName").value;
@@ -239,15 +240,15 @@ function validateEmail(email) {
 /**
  * 
  * @param {*} contact Customer Info
- * @param {*} teddies table containing the Teddy's Id
+ * @param {*} teddyIds table containing the Teddy's Id
  * @returns return an order promise
  */
-async function sendOrder(contact, teddyIds) {
+async function sendOrder(contact, teddiesIds) {
     let response = await fetch(baseUrl + "/teddies/order", {
         method: 'POST',
         body: JSON.stringify({
             "contact": contact,
-            "products": teddyIds,
+            "products": teddiesIds,
         })
     });
     let json = await response.json();

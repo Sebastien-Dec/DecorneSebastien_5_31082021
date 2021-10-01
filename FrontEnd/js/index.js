@@ -2,12 +2,12 @@
 list = listOfProducts();
 console.log("List", list);
 list.then((teddies) => {
-        console.log("teddies", teddies);
-        let teddiesHtml = "";
-        for(teddy of teddies) {
-            teddiesHtml += buildTeddies(teddy);
-        }
-        document.querySelector("#list").innerHTML = teddiesHtml;
+    console.log("teddies", teddies);
+    let teddiesHtml = "";
+    for(teddy of teddies) {
+        teddiesHtml += buildTeddies(teddy);
+    }
+    document.querySelector("#list").innerHTML = teddiesHtml;
     })
     .catch((error) => {
         document.querySelector(".alert").innertHtml = `

@@ -20,8 +20,6 @@ teddiesHTMLForTable += buildTeddiesTotalPriceForTable();
 
 document.querySelector("#productInCart").innerHTML = teddiesHTMLForTable;
 
-
-
 let teddyIds = getIdFromTeddies(teddies);
 let orderPromise = sendOrder(contact, teddyIds);
 
