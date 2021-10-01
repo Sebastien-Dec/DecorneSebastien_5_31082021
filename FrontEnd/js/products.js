@@ -25,9 +25,7 @@ teddyPromise.then(function(teddy) {
      // Choose colors    
      let option = document.querySelector("#optionColors");
      option.addEventListener("change", function(e) {
-         console.log("e", e.target.options[e.target.options.selectedIndex].value);
-         colors = e.target.options[e.target.options.selectedIndex].value;
-         console.log("colors", colors);  
+         colors = e.target.options[e.target.options.selectedIndex].value; 
          return colors; 
      })
 });

@@ -184,11 +184,7 @@ function getIdFromTeddies(teddies) {
 
 //Function that allows you to build the contact object from the contact information
 function buildContact(firstName, lastName, address, city, email) {
-    firstName = document.querySelector("#firstName").value;
-    lastName = document.querySelector("#lastName").value;
-    address = document.querySelector("#address").value;
-    city = document.querySelector("#city").value;
-    email = document.querySelector("#email").value;
+    
     let contact = {
         "firstName": firstName,
         "lastName": lastName,
@@ -243,12 +239,12 @@ function validateEmail(email) {
  * @param {*} teddyIds table containing the Teddy's Id
  * @returns return an order promise
  */
-async function sendOrder(contact, teddiesIds) {
+async function sendOrder(contact, teddyIds) {
     let response = await fetch(baseUrl + "/teddies/order", {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({
             "contact": contact,
-            "products": teddiesIds,
+            "products": teddyIds,
         })
     });
     let json = await response.json();
