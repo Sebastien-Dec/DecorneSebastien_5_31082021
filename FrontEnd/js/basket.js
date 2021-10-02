@@ -3,11 +3,7 @@ let form = document.querySelector("#order");
 form.addEventListener("click", function(event) {
     event.preventDefault();
 
-    firstName = document.querySelector("#firstName").value;
-    lastName = document.querySelector("#lastName").value;
-    address = document.querySelector("#address").value;
-    city = document.querySelector("#city").value;
-    email = document.querySelector("#email").value;
+    
 
     //Call the function to build the contact with let contact
     let contact = buildContact(firstName, lastName, address, city, email);
@@ -19,15 +15,15 @@ form.addEventListener("click", function(event) {
         return;
     }
 
-    
-
     let teddyIds = getIdFromTeddies(teddies);
     let orderPromise = sendOrder(contact, teddyIds);
 
-    orderPromise.then(function(order) {
+    orderPromise.then((order) => {
+        getOrder(contact, teddyIds);
         console.log(order.contact, order.products, order.orderId);
-    })
-}, false);
+        return order;
+        })
+    }, false);
 
 let teddies = getTeddiesFromCart();
     let teddiesHTMLForTable = "";

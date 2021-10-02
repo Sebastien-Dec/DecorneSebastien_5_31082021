@@ -184,7 +184,11 @@ function getIdFromTeddies(teddies) {
 
 //Function that allows you to build the contact object from the contact information
 function buildContact(firstName, lastName, address, city, email) {
-    
+    firstName = document.querySelector("#firstName").value;
+    lastName = document.querySelector("#lastName").value;
+    address = document.querySelector("#address").value;
+    city = document.querySelector("#city").value;
+    email = document.querySelector("#email").value;
     let contact = {
         "firstName": firstName,
         "lastName": lastName,
@@ -219,11 +223,9 @@ function validateContact(contact) {
     } else if(contact.email.indexOf('@') == -1) {
         alert("Ceci n'est pas une adresse mail");
         return false;
-    } /*else { 
-        setTimeout(() => {
-            document.querySelector("#order").addEventListener("click", window.location.href = 'ordered.html');    
-        }, 1000); 
-    }*/
+    } else {
+        return true;
+    }
 }
 
 //For validate Email
@@ -249,4 +251,10 @@ async function sendOrder(contact, teddyIds) {
     });
     let json = await response.json();
     return json;
+}
+
+async function getOrder(contact, teddyIds) {
+    let response = await fetch(baseUrl + "/teddies/order");
+    let order = await response.json();
+    return order;
 }
