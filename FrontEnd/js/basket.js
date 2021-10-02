@@ -8,7 +8,6 @@ form.addEventListener("click", function(event) {
     //Call the function to build the contact with let contact
     let contact = buildContact(firstName, lastName, address, city, email);
     let message = validateContact(contact);
-    //let email = validateEmail(email);
 
     if(message != null) {
         alert(message);
@@ -16,13 +15,16 @@ form.addEventListener("click", function(event) {
     }
 
     let teddyIds = getIdFromTeddies(teddies);
+    console.log("teddyds", teddyIds, contact);
     let orderPromise = sendOrder(contact, teddyIds);
-
+    console.log(orderPromise);
     orderPromise.then((order) => {
-        getOrder(contact, teddyIds);
+        
         console.log(order.contact, order.products, order.orderId);
-        return order;
-        })
+        window.location.href = `ordered.html?orderId=${order.orderId}&totalPrice=${computeTotalPriceFromCart()}`;
+
+    })
+    
     }, false);
 
 let teddies = getTeddiesFromCart();

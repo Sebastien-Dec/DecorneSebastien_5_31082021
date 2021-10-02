@@ -4,8 +4,16 @@ header {
     margin: 20px;
 }
 
-.siteName, .siteName>a {
+.siteName {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     font-size: 2rem;
+}
+*
+.siteName>a {
+    font-size: 1.5rem;
+    margin: 10px;
 }
 
 .button, .button-viewBasket a {
@@ -30,7 +38,7 @@ form {
     margin: 20px ;
 }
 
-label, input, .total-price, .totalPrice {
+label, input, .total-price, .totalPrice, .orderNumber {
     margin: 5px;
     font-weight: bold;
     font-size: 1.3rem;
@@ -101,7 +109,7 @@ footer {
     font-size: 1.3rem;
 }
 
-.total-price, .product-quantity, .product-name {
+.total-price, .product-quantity, .product-name, .orderNumber {
     font-weight: bold;
 }
 

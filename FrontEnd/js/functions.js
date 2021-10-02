@@ -76,16 +76,14 @@ function buildTeddy(teddy) {
 // Function AddCart
 function addTeddyToCart(teddy) {
     // Create Object
-    let quantity = 1;
-    let totalPrice = (teddy.price * quantity);
+    
     let teddyForCart = {
-        id : `${teddy._id}`,
-        name : `${teddy.name}`,
-        price : `${teddy.price}`,
+        id : teddy._id,
+        name : teddy.name,
+        price : teddy.price,
         color : colors,
-        image : `${teddy.imageUrl}`,
-        quantity : quantity,
-        totalPrice : totalPrice
+        image : teddy.imageUrl,
+        quantity : 1
     }
     let teddiesJSON = localStorage.getItem(cartKey);
     if(teddiesJSON == null) {
@@ -98,12 +96,22 @@ function addTeddyToCart(teddy) {
             teddiesJSON = JSON.stringify(teddies);
         }
     } else {
-        let teddies = JSON.parse(teddiesJSON);
         if(colors == "") {
             alert("Veuillez choisir une couleur");
             return false;
         } else {
-            teddies.push(teddyForCart);
+            let teddies = JSON.parse(teddiesJSON);
+            let flag = false;
+            for(let teddy of teddies) {
+                if(teddy.id == teddyForCart.id) {
+                    teddy.quantity++;
+                    flag = true;
+                    break;
+                }
+            }
+            if(!flag) {
+                teddies.push(teddyForCart);
+            }
             teddiesJSON = JSON.stringify(teddies);
         }
     }
@@ -116,10 +124,20 @@ function confirmAddCart() {
 }
 
 //Function to remove product in cart
-function removeTeddyToCart() {
-    teddiesParse.splice(teddiesParse, 1);
-    localStorage.setItem(cartKey, JSON.stringify(teddiesParse));
-    window.location.reload();
+function removeTeddyToCart(id) {
+    let teddies = getTeddiesFromCart();
+    let index = -1;
+    for(let i = 0; i < teddies.length; i++) {
+        if(id == teddies[i].id) {
+            index = i;
+            break;
+        } 
+    }
+    if(index >= 0) {
+        teddies.splice(index, 1);
+        localStorage.setItem(cartKey, JSON.stringify(teddies));
+        window.location.reload();
+    }
 }
 
 //Function that returns an array of teddies that are in the basket (localstorage)
@@ -143,9 +161,9 @@ function buildTeddyForTable(teddy) {
             <td class="product-color">${teddy.color}</td>
             <td class="price">${formatPrice(teddy.price)}</td>
             <td class="product-quantity">${teddy.quantity}</td>
-            <td class="total-price">${formatPrice(teddy.totalPrice)}</td>
+            <td class="total-price">${formatPrice(teddy.price*teddy.quantity)}</td>
             <td>
-                <button class="delete" onclick="removeTeddyToCart()"><i class="far fa-trash-alt"></i></button>
+                <button class="delete" onclick="removeTeddyToCart('${teddy.id}')"><i class="far fa-trash-alt"></i></button>
             </td>
         </tr>
         `; 
@@ -167,7 +185,7 @@ function computeTotalPriceFromCart() {
     //browse the teddies object and sum all the `prices`
     let sum = 0;
     for(let teddy of teddies) {
-        sum += teddy.totalPrice;
+        sum += (teddy.price * teddy.quantity);
     }
     return sum;
 }
@@ -203,34 +221,27 @@ function buildContact(firstName, lastName, address, city, email) {
 //of the contact placing the order
 function validateContact(contact) {
     if(contact == null) {
-        alert("Veuillez remplir le formulaire");
-        return false;
+        return "Veuillez remplir le formulaire";
     } else if(contact.firstName == null || contact.firstName.trim() == "") {
-        alert("Veuillez renseigner votre prénom");
-        return false;
+        return "Veuillez renseigner votre prénom";
     } else if(contact.lastName == null || contact.lastName.trim() == "") {
-        alert("Veuillez renseigner votre nom");
-        return false;
+        return "Veuillez renseigner votre nom";
     } else if(contact.address == null || contact.address.trim() == "") {
-        alert("Veuillez rensigner votre addresse");
-        return false;
+        return "Veuillez rensigner votre addresse";
     } else if(contact.city == null || contact.city.trim() == "") {
-        alert("Veuillez renseigner votre ville");
-        return false;
+        return "Veuillez renseigner votre ville";
     } else if(contact.email == null || contact.email.trim() =="") {
-        alert("Veuillez renseigner votre email");
-        return false;
-    } else if(contact.email.indexOf('@') == -1) {
-        alert("Ceci n'est pas une adresse mail");
-        return false;
+        return "Veuillez renseigner votre email";
+    } else if(!validateEmail(contact.email)) {
+        return "Ceci n'est pas une adresse mail";
     } else {
-        return true;
+        return null;
     }
 }
 
 //For validate Email
 function validateEmail(email) {
-    let emailRegExp = new RegExp('^[a-zA-Z0-9.-_] + [@]{1}[a-zA-Z0-9.-_] + [.]{1}[a-z]{2,10}$','g');
+    let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$','g');
     return emailRegExp.test(email);
 }
 
@@ -244,17 +255,16 @@ function validateEmail(email) {
 async function sendOrder(contact, teddyIds) {
     let response = await fetch(baseUrl + "/teddies/order", {
         method: "POST",
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             "contact": contact,
-            "products": teddyIds,
+            "products": teddyIds
         })
     });
     let json = await response.json();
     return json;
 }
 
-async function getOrder(contact, teddyIds) {
-    let response = await fetch(baseUrl + "/teddies/order");
-    let order = await response.json();
-    return order;
+function clearCart() {
+    localStorage.removeItem(cartKey);
 }
