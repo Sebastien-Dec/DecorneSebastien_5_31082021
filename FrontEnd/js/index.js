@@ -1,6 +1,6 @@
 // Calling up the list of objects
 list = listOfProducts();
-console.log("List", list);
+
 list.then((teddies) => {
     console.log("teddies", teddies);
     let teddiesHtml = "";
@@ -14,5 +14,5 @@ list.then((teddies) => {
             <div class="error-message"  role="alert">
                 ${error}
             </div>`
-});
+    });
 

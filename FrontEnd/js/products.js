@@ -2,16 +2,12 @@
 console.log(document.location.href);
 const params = new URLSearchParams(window.location.search);
 let teddyId = params.get("id");
-console.log("teddyId", teddyId);
 
 //Access to the chosen teddy bear
 let teddyPromise = getTeddy(teddyId);
-console.log("teddy", teddyPromise);
-
 let colors = "";
 
 teddyPromise.then(function(teddy) {
-
     // Create Product page
     let teddyHtml = buildTeddy(teddy);
     document.querySelector("#teddy").innerHTML = teddyHtml;
@@ -27,5 +23,5 @@ teddyPromise.then(function(teddy) {
      option.addEventListener("change", function(e) {
          colors = e.target.options[e.target.options.selectedIndex].value; 
          return colors; 
-     })
+    })
 });

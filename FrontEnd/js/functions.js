@@ -4,7 +4,6 @@ async function listOfProducts() {
     const json = await response.json();
     return json; 
 }
-console.log("listOfProducts", listOfProducts());
 
 // Function to call Id
 async function getTeddy(teddyId) {
@@ -12,7 +11,6 @@ async function getTeddy(teddyId) {
     const json = await response.json();
     return json;
 }
-console.log("getTeddy", getTeddy());
 
 // Function for Price in Euro
 function formatPrice(price) {
@@ -78,7 +76,6 @@ function buildTeddy(teddy) {
 // Function AddCart
 function addTeddyToCart(teddy) {
     // Create Object
-    
     let teddyForCart = {
         id : teddy._id,
         name : teddy.name,
@@ -152,7 +149,6 @@ function getTeddiesFromCart() {
         return teddiesParse;
     }
 }
-console.log("teddiesFromCart", getTeddiesFromCart());
 
 //Function to build a teddy as a table row for display in a table
 function buildTeddyForTable(teddy) {
@@ -202,7 +198,6 @@ function getIdFromTeddies(teddies) {
     }
     return teddiesIds;
 }
-console.log("getIdFromTeddies", getIdFromTeddies());
 
 //Function that allows you to build the contact object from the contact information
 function buildContact(firstName, lastName, address, city, email) {
@@ -220,7 +215,6 @@ function buildContact(firstName, lastName, address, city, email) {
     };
     return contact;
 }
-console.log("contact", buildContact());
 
 //Function that allows to validate / check the information 
 //of the contact placing the order

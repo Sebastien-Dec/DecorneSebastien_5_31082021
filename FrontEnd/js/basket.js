@@ -3,8 +3,6 @@ let form = document.querySelector("#order");
 form.addEventListener("click", function(event) {
     event.preventDefault();
 
-    
-
     //Call the function to build the contact with let contact
     let contact = buildContact(firstName, lastName, address, city, email);
     let message = validateContact(contact);
