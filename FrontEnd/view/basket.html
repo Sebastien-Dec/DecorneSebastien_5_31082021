@@ -10,39 +10,44 @@
     </head>
     <body>
         <header>
-            <div class="siteName">Orinoco</div>
+            <div class="siteName">
+                <p>Orinoco</p>
+                <a href="../index.html">Accueil</a>
+            </div>
         </header>
-
         <section id="recap">
-            <div class="product-image">
-                <!-- Product image -->
-            </div>
-            <div class="product-name">
-                <!-- Product name -->
-            </div>
-            <div class="quantity">
-                <!-- Quantity to order -->
-            </div>
-            <div class="price">
-                <!-- Price of the product -->
-            </div>
-            <div class="totalPrice">
-                <!-- Total price of order -->
-            </div>
+            <table>
+                <tr>
+                    <th>Image</th>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Couleur</th>
+                    <th>Prix Unitaire</th>
+                    <th>Quantité</th>
+                    <th>Prix Total</th>
+                </tr>
+                <tbody id="productInCart">
+                </tbody>
+            </table>
+           
         </section>
-        <section id="form">
-            <ul>
-                <li><input id="firstName" placeholder="Votre nom" /></li>
-                <li><input id="lastName" placeholder="Votre prénom" /></li>
-                <li><input id="address" placeholder="Votre adresse" /></li>
-                <li><input id="zipCode" placeholder="Votre code postal" /></li>
-                <li><input id="city" placeholder="Votre ville" /></li>
-                <li><input id="email" type="email" placeholder="Votre email" /></li>
-                <li><button id="submit" type="submit">Commander</button></li>
-            </ul>
-        </section>
+        <form name="contact" id="contact" method="POST">
+            <label for="firstName">Votre Prénom</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" required>
+            <label for="lastName">Votre Nom</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" required>
+            <label for="address">Votre Adresse</label>
+            <input type="text" id="address" name="address" placeholder="Entrez votre addresse" required>
+            <label for="city">Votre Ville</label>
+            <input type="text" name="city" id="city"  placeholder="Entrez votre ville" required>
+            <label for="email">Votre email</label>
+            <input type="email" name="email" id="email" placeholder="Entrez votre email" required>
+            <button type="submit" class="button button-order" id="order">Commander</button>
+        </form>
         <footer>
-            <div class="siteName">Orinoco</div>
+            <div class="siteName">
+                <a href="../index.html">Page d'accueil</a>
+            </div>
                 <div class="social">
                     <a href=""><i class="fab fa-facebook-square"></i></a>
                     <a href=""><i class="fab fa-twitter-square"></i></a>
