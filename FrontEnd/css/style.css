@@ -11,12 +11,13 @@ header {
     font-size: 2rem;
 }
 *
-.siteName>a {
+.siteName > a {
     font-size: 1.5rem;
     margin: 10px;
 }
 
-.button, .button-viewBasket a {
+.button, 
+.button-viewBasket a {
     background-color: blue;
     border-radius: 5px;
     color: white !important;
@@ -38,7 +39,10 @@ form {
     margin: 20px ;
 }
 
-label, input, .total-price, .totalPrice, .orderNumber {
+label, input, 
+.total-price, 
+.totalPrice, 
+.orderNumber {
     margin: 5px;
     font-weight: bold;
     font-size: 1.3rem;
@@ -70,7 +74,9 @@ a {
     transform: scale(2);
 }
 
-.presentation a, .product, #recapOrder{
+.presentation a, 
+.product, 
+#recapOrder{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -109,7 +115,10 @@ footer {
     font-size: 1.3rem;
 }
 
-.total-price, .product-quantity, .product-name, .orderNumber {
+.total-price, 
+.product-quantity, 
+.product-name, 
+.orderNumber {
     font-weight: bold;
 }
 
@@ -123,7 +132,9 @@ table {
     width: 100%;
 }
 
-table, th, td {
+table, 
+th, 
+td {
     text-align: center;
     border: 1px solid black;
     border-collapse: collapse;
@@ -134,4 +145,24 @@ table, th, td {
     text-align: center;
     font-size: 2rem;
     margin: 20px;
+}
+@media screen and (max-width: 750px) {
+    table,
+    tbody,
+    tr,
+    td {
+        display: block;
+        width: auto;
+}
+
+@media screen and (max-width: 590px) {
+    .presentation a, .product{
+        display: flex;
+        flex-direction: column
+    }
+
+    .product-price {
+        margin: 20px;
+    }
+
 }
