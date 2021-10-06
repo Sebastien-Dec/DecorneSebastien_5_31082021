@@ -152,7 +152,7 @@ td {
     tr,
     td {
         display: block;
-        width: auto!important;
+        width: auto;
 }
 
 @media screen and (max-width: 590px) {
