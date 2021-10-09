@@ -153,6 +153,10 @@ td {
     td {
         display: block;
         width: auto;
+    }
+    th {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 590px) {

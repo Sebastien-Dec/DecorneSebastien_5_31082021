@@ -2,6 +2,7 @@
 async function listOfProducts() {
     const response = await fetch(baseUrl + "/teddies");
     const json = await response.json();
+    console.log("json listOfProducts", json);
     return json; 
 }
 
@@ -9,6 +10,7 @@ async function listOfProducts() {
 async function getTeddy(teddyId) {
     const response = await fetch(baseUrl + "/teddies/" + teddyId);
     const json = await response.json();
+    console.log("json getTeddy", json);
     return json;
 }
 
