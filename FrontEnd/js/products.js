@@ -1,6 +1,10 @@
 // Checking the display url
 console.log(document.location.href);
+// Creates and returns a new object with URLSearchParams
+// Sends a string of data to the server 
+// by modifying the search property with window.location.search
 const params = new URLSearchParams(window.location.search);
+// We retrieve the product ID
 let teddyId = params.get("id");
 
 //Access to the chosen teddy bear
@@ -13,9 +17,9 @@ teddyPromise.then(function(teddy) {
     document.querySelector("#teddy").innerHTML = teddyHtml;
 
     // Add cart
-    let AddCart = document.querySelector("#addCart");
-    if(AddCart) {
-        AddCart.addEventListener("click", function (){addTeddyToCart(teddy)});
+    let addCart = document.querySelector("#addCart");
+    if(addCart) {
+        addCart.addEventListener("click", function (){addTeddyToCart(teddy)});
     }
 
      // Choose colors    

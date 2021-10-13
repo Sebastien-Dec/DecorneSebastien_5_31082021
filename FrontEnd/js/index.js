@@ -1,9 +1,10 @@
 // Calling up the list of objects
-list = listOfProducts();
+let list = listOfProducts();
 
 list.then((teddies) => {
     console.log("teddies", teddies);
     let teddiesHtml = "";
+    // Construction of the list of products
     for(teddy of teddies) {
         teddiesHtml += buildTeddies(teddy);
     }
