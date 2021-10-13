@@ -20,7 +20,7 @@ function formatPrice(price) {
     return newPrice;
 }
 
-// Function for Build Teddy for HomePage
+// Function for Build the page with the list of products
 function buildTeddies(teddy) {
     let teddiesHtml = 
         `<section class="presentation">
@@ -203,11 +203,6 @@ function getIdFromTeddies(teddies) {
 
 //Function that allows you to build the contact object from the contact information
 function buildContact(firstName, lastName, address, city, email) {
-    firstName = document.querySelector("#firstName").value;
-    lastName = document.querySelector("#lastName").value;
-    address = document.querySelector("#address").value;
-    city = document.querySelector("#city").value;
-    email = document.querySelector("#email").value;
     let contact = {
         "firstName": firstName,
         "lastName": lastName,
