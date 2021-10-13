@@ -103,6 +103,8 @@ function addTeddyToCart(teddy) {
         } else {
             let teddies = JSON.parse(teddiesJSON);
             let flag = false;
+            // Increase the quantity by 1 if the product 
+            // is already in the basket
             for(let teddy of teddies) {
                 if(teddy.id == teddyForCart.id) {
                     teddy.quantity++;
