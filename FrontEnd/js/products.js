@@ -1,8 +1,7 @@
 // Checking the display url
 console.log(document.location.href);
-// Creates and returns a new object with URLSearchParams
-// Sends a string of data to the server 
-// by modifying the search property with window.location.search
+// Creates and returns a new URLSearchParams object from the browser url 
+//(at least the part with the `?`)
 const params = new URLSearchParams(window.location.search);
 // We retrieve the product ID
 let teddyId = params.get("id");
